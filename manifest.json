@@ -1,10 +1,10 @@
 {
   "id": "com.rk.demo",
-  "name": "PluginTemplate",
+  "name": "OmniConverter",
   "mainClass": "com.rk.demo.Main",
   "version": "1.0.0",
-  "description": "A demo plugin template project",
-  "authors": ["Rohit"],
+  "description": "A utility for Hex, Decimal, Base58, and Endian conversions.",
+  "authors": ["You"],
   "minAppVersion": 73,
   "targetAppVersion": 73,
   "repository": "https://github.com/Xed-Editor/pluginTemplate"
