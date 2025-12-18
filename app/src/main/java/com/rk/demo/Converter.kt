@@ -4,25 +4,22 @@ import java.math.BigInteger
 import java.util.Base64
 
 object Converter {
-    // 1. Decimal <-> Hex
-    fun decToHex(dec: String): String = try { BigInteger(dec).toString(16) } catch(e: Exception) { "Error" }
+    fun decToHex(dec: String): String = try { BigInteger(dec).toString(16).uppercase() } catch(e: Exception) { "Error" }
     fun hexToDec(hex: String): String = try { BigInteger(hex, 16).toString() } catch(e: Exception) { "Error" }
 
-    // 2. Base64
     fun toBase64(input: String): String = 
         Base64.getEncoder().encodeToString(input.toByteArray())
+        
     fun fromBase64(b64: String): String = try {
         String(Base64.getDecoder().decode(b64))
     } catch(e: Exception) { "Invalid Base64" }
 
-    // 3. Endian Swap (Hex)
     fun endianSwap(hex: String): String {
         val clean = hex.replace("0x", "")
         val padded = if (clean.length % 2 != 0) "0$clean" else clean
         return padded.chunked(2).reversed().joinToString("")
     }
 
-    // 4. Base58 (Bitcoin style)
     private const val ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
     private val BASE = BigInteger.valueOf(58)
 
@@ -36,5 +33,15 @@ object Converter {
             num = div
         }
         return sb.reverse().toString()
+    }
+
+    fun fromBase58(base58: String): String {
+        var num = BigInteger.ZERO
+        for (char in base58) {
+            val digit = ALPHABET.indexOf(char)
+            if (digit == -1) return "Invalid Base58 Char"
+            num = num.multiply(BASE).add(BigInteger.valueOf(digit.toLong()))
+        }
+        return num.toString(16).uppercase()
     }
 }

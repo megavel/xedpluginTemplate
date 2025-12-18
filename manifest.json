@@ -2,10 +2,10 @@
   "id": "com.rk.demo",
   "name": "OmniConverter",
   "mainClass": "com.rk.demo.Main",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A utility for Hex, Decimal, Base58, and Endian conversions.",
-  "authors": ["You"],
+  "authors": ["Stilldasmainaem"],
   "minAppVersion": 73,
-  "targetAppVersion": 73,
+  "targetAppVersion": 74,
   "repository": "https://github.com/Xed-Editor/pluginTemplate"
 }
